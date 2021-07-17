@@ -97,8 +97,8 @@ class HardCodedData:
     jerry = User("Jerry", "qwerty", "1sfhsafabfhbahfbh8833")
     apartmentList = []
     sampleCity1 = City("UC Berk", apartmentList)
-    sampleCity2 = City("Trump hotels", apartmentList)
-    sampleCity3 = City("de hideup", apartmentList)
+    sampleCity2 = City("New York", apartmentList)
+    sampleCity3 = City("France", apartmentList)
     tempCities = [sampleCity1, sampleCity2, sampleCity3]
     sampleCities = cities(tempCities, "Canada")
 
@@ -116,3 +116,4 @@ class HardCodedData:
     apartmentList.append(apartment1)
 
     blueMoon = Host("bluemoon", "123456", "HSHDHSADASDHOAS", apartmentList)  # oh my god
+    customer1 = Customer("BobtheBuilder", "sksksksksk", "SLKJFLSD1234", -10)
