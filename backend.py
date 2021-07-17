@@ -57,6 +57,9 @@ class Country(Enum):
 class Apartment:
     pass
 
+@dataclass
+class Customer(User):
+    trustRating: int
 
 @dataclass
 class Host(User):
