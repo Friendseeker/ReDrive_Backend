@@ -1,7 +1,6 @@
 import dataclasses
 from enum import Enum
 
-import uvicorn as uvicorn
 from fastapi import FastAPI, File
 from dataclasses import dataclass
 from datetime import datetime
@@ -112,8 +111,3 @@ class HardCodedData:
     apartmentList.append(apartment1)
 
     blueMoon = Host("bluemoon", "123456", "HSHDHSADASDHOAS", apartmentList)  # oh my god
-
-
-## TODO: change host="0,0,0,0"
-if __name__ == "__main__":
-    uvicorn.run(app, port=8000)
