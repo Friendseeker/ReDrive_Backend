@@ -8,13 +8,13 @@ from datetime import datetime
 app = FastAPI()
 
 
-@app.get("/getLocationsByCountry/{country_name}")
-def get_locations_by_country(country_name: str):
-    return HardCodedData.tempLocations
+@app.get("/getcitiesByCountry/{country_name}")
+def get_cities_by_country(country_name: str):
+    return HardCodedData.tempcities
 
 
-@app.get("/getApartementsByLocation/{location_name}")
-def get_apartments_by_location(location_name: str):
+@app.get("/getApartementsBycity/{city_name}")
+def get_apartments_by_city(city_name: str):
     return HardCodedData.apartmentList
 
 
@@ -57,9 +57,11 @@ class Country(Enum):
 class Apartment:
     pass
 
+
 @dataclass
 class Customer(User):
     trustRating: int
+
 
 @dataclass
 class Host(User):
@@ -78,14 +80,14 @@ class Apartment:
 
 
 @dataclass
-class Location:
-    locationName: str
+class City:
+    cityName: str
     apartmentList: list[Apartment]
 
 
 @dataclass
-class Locations:
-    locationList: list[Location]
+class cities:
+    cityList: list[City]
     country: Country
 
 
@@ -94,11 +96,11 @@ class HardCodedData:
     jonathan = User("Jonathan", "qwertyuiop", "sksksksksksk1234")
     jerry = User("Jerry", "qwerty", "1sfhsafabfhbahfbh8833")
     apartmentList = []
-    sampleLocation1 = Location("UC", apartmentList)
-    sampleLocation2 = Location("Trump hotels", apartmentList)
-    sampleLocation3 = Location("de hideup", apartmentList)
-    tempLocations = [sampleLocation1, sampleLocation2, sampleLocation3]
-    sampleLocations = Locations(tempLocations, "Canada")
+    sampleCity1 = City("UC Berk", apartmentList)
+    sampleCity2 = City("Trump hotels", apartmentList)
+    sampleCity3 = City("de hideup", apartmentList)
+    tempCities = [sampleCity1, sampleCity2, sampleCity3]
+    sampleCities = cities(tempCities, "Canada")
 
     negReview = Review(0, "This apartment sucks *ss I'd rather sleep in a New York dumpster", "sksksksksksk1234")
     posReview = Review(5, "This is the greatest apartment ever i'd pay my firstborn son", "1sfhsafabfhbahfbh8833")
