@@ -10,7 +10,7 @@ app = FastAPI()
 
 @app.get("/getcitiesByCountry/{country_name}")
 def get_cities_by_country(country_name: str):
-    return HardCodedData.tempcities
+    return HardCodedData.get_cities(country_name=country_name)
 
 
 @app.get("/getApartementsBycity/{city_name}")
@@ -49,8 +49,12 @@ class Timespan:
 
 
 class Country(Enum):
-    US = "United States"
-    CA = "Canada"
+    US = "US"
+    CA = "CA"
+    CN = "CN"
+    FR = "FR"
+    JP = "JP"
+    IT = "IT"
 
 
 # ugly workaround for circular reference
@@ -85,8 +89,12 @@ class City:
     apartmentList: list[Apartment]
 
 
+#   desc: str
+#   image: File
+
+
 @dataclass
-class cities:
+class Cities:
     cityList: list[City]
     country: Country
 
@@ -99,8 +107,52 @@ class HardCodedData:
     sampleCity1 = City("UC Berk", apartmentList)
     sampleCity2 = City("New York", apartmentList)
     sampleCity3 = City("France", apartmentList)
-    tempCities = [sampleCity1, sampleCity2, sampleCity3]
-    sampleCities = cities(tempCities, "Canada")
+    tempCitiesCanada = [sampleCity1, sampleCity2, sampleCity3]
+    canadaCities = Cities(tempCitiesCanada, Country.CA)
+
+    no = City("New Orleans, Louisiana", apartmentList)
+    sf = City("San Francisco, California", apartmentList)
+    nyc = City("New York City, New York", apartmentList)
+    chi = City("Chicago, Illinois", apartmentList)
+    lv = City("Las Vegas, Nevada", apartmentList)
+    la = City("Los Angeles, California", apartmentList)
+    tempCitiesUS = [no, sf, nyc, chi, lv, la]
+    usCities = Cities(tempCitiesUS, Country.US)
+
+    ro = City("Romes", apartmentList)
+    ve = City("Venice", apartmentList)
+    flo = City("Florence", apartmentList)
+    mi = City("Milan", apartmentList)
+    na = City("Naples", apartmentList)
+    am = City("Amalfi", apartmentList)
+    tempCitiesItaly = [ro, ve, flo, mi, na, am]
+    italyCities = Cities(tempCitiesItaly, Country.US)
+
+    paris = City("Paris", [])
+    nice = City("Nice", [])
+    bordeaux = City("Bordeaux", [])
+    lyon = City("Lyon", [])
+    cannes = City("Cannes", [])
+    corsica = City("Corsica", [])
+    tempCitiesFrance = [paris, nice, bordeaux, lyon, cannes, corsica]
+    franceCities = Cities(tempCitiesFrance, Country.FR)
+
+    tokyo = City("Tokyo", [])
+    kyoto = City("Kyoto", [])
+    osaka = City("Osaka", [])
+    hiroshima = City("Hiroshima", [])
+    sapporo = City("Sapporo", [])
+    fukuoka = City("Fukuoka", [])
+    tempCitiesJapan = [tokyo, kyoto, osaka, hiroshima, sapporo, fukuoka]
+    japanCities = Cities(tempCitiesJapan, Country.JP)
+
+    beijing = City("Beijing", [])
+    shanghai = City("Shanghai", [])
+    chengdu = City("Chengdu", [])
+    xian = City("Xi'an", [])
+    hangzhou = City("Hanzhou", [])
+    tempCitiesChina = [beijing, shanghai, chengdu, xian, hangzhou]
+    chinaCities = Cities(tempCitiesChina, Country.CN)
 
     negReview = Review(0, "This apartment sucks *ss I'd rather sleep in a New York dumpster", "sksksksksksk1234")
     posReview = Review(5, "This is the greatest apartment ever i'd pay my firstborn son", "1sfhsafabfhbahfbh8833")
@@ -117,3 +169,17 @@ class HardCodedData:
 
     blueMoon = Host("bluemoon", "123456", "HSHDHSADASDHOAS", apartmentList)  # oh my god
     customer1 = Customer("BobtheBuilder", "sksksksksk", "SLKJFLSD1234", -10)
+
+    @classmethod
+    def get_cities(cls, country_name: str) -> Cities:
+        if country_name == "US":
+            return cls.usCities
+        if country_name == "IT":
+            return cls.italyCities
+        if country_name == "JP":
+            return cls.japanCities
+        if country_name == "FR":
+            return cls.franceCities
+        if country_name == "CN":
+            return cls.chinaCities
+        return None
