@@ -166,20 +166,72 @@ class HardCodedData:
     tempCitiesFrance = [paris, nice, bordeaux, lyon, cannes, corsica]
     franceCities = Cities(tempCitiesFrance, Country.FR)
 
-    tokyo = City("Tokyo", [], "description", parse_url("https://tinyurl.com/3v4e8atv").url)
-    kyoto = City("Kyoto", [], "description", parse_url("https://tinyurl.com/ynynermf").url)
-    osaka = City("Osaka", [], "description", parse_url("https://tinyurl.com/85t9d34z").url)
-    hiroshima = City("Hiroshima", [], "description", parse_url("https://tinyurl.com/hesjnytw").url)
-    sapporo = City("Sapporo", [], "description", parse_url("https://tinyurl.com/dy5jze3p").url)
-    fukuoka = City("Fukuoka", [], "description", parse_url("https://tinyurl.com/263u9ntt").url)
+    tokyoDESC = "Tokyo offers a seemingly unlimited choice of shopping, entertainment, culture " \
+                "and dining to its visitors. The city's history can be appreciated in districts " \
+                "such as Asakusa and in many excellent museums, historic temples and gardens. In " \
+                "addition to the city, Tokyo also offers a number of attractive green spaces in " \
+                "the city center and within relatively short train rides at its outskirts."
+    kyotoDESC = "The streets of Kyoto, which are deeply influenced by traditional Japanese culture. " \
+                "The seas, in which Japan's oldest legends are still alive, and the mountains that are" \
+                " the origins of the Japanese people. Beyond the city, Kyoto Prefecture stretches north" \
+                " through the forest to the sea."
+    osakaDESC = "Hop off the bullet train into an area of exciting nightlife, delicious food and" \
+                " straight-talking, friendly locals. Along with plenty of shopping and modern " \
+                "attractions, Osaka also has a historical side, the highlight of which is Osaka " \
+                "Castle. The castle is a great place to discover more about Japanese history and " \
+                "to wander the beautiful grounds, especially during cherry blossom season in April " \
+                "when the sakura blooms and the weather is often at its best."
+    hiroshimaDESC = "Hiroshima Prefecture is located in the southwestern part of the Japanese islands. " \
+                    "It is rich in the natural beauty of the Inland Sea and the Chugoku Mountains, with " \
+                    "mountains, sea, rivers, valleys, plains, basins that characterize Japan's landscape."
+    sapporoDESC = "Sapporo (札幌, \"important river flowing through a plain\" in Ainu language) is the capital " \
+                  "of Hokkaido and Japan's fifth largest city. Sapporo is also one of the nation's youngest " \
+                  "major cities. Sapporo became world famous in 1972 when the Olympic Winter Games were held " \
+                  "there. Today, the city is well known for its ramen, beer, and the annual snow festival held " \
+                  "in February."
+    fukuokaDESC = "Fukuoka is the administrative, economic, and cultural center of the southernmost island of " \
+                  "Kyushu and is one of the country's most progressive cities. Located in Hakata Bay, Fukuoka " \
+                  "is divided in two by the River Naka, with Hakata, the older eastern part of the city, serving " \
+                  "as an important port and commercial center. Fukuoka is also a tourism hot spot that's home to " \
+                  "numerous fine museums, art galleries, and theaters, as well as great places to eat. The city " \
+                  "also hosts many professional sporting events and festivals."
+
+    tokyo = City("Tokyo", [],  tokyoDESC, parse_url("https://tinyurl.com/3v4e8atv").url)
+    kyoto = City("Kyoto", [], kyotoDESC, parse_url("https://tinyurl.com/ynynermf").url)
+    osaka = City("Osaka", [], osakaDESC, parse_url("https://tinyurl.com/85t9d34z").url)
+    hiroshima = City("Hiroshima", [], hiroshimaDESC, parse_url("https://tinyurl.com/hesjnytw").url)
+    sapporo = City("Sapporo", [], sapporoDESC, parse_url("https://tinyurl.com/dy5jze3p").url)
+    fukuoka = City("Fukuoka", [], fukuokaDESC, parse_url("https://tinyurl.com/263u9ntt").url)
     tempCitiesJapan = [tokyo, kyoto, osaka, hiroshima, sapporo, fukuoka]
     japanCities = Cities(tempCitiesJapan, Country.JP)
 
-    beijing = City("Beijing", [], "description", parse_url("https://tinyurl.com/yfypw5uj").url)
-    shanghai = City("Shanghai", [], "description", parse_url("https://tinyurl.com/xe7k7sem").url)
-    chengdu = City("Chengdu", [], "description", parse_url("https://tinyurl.com/v6nw25f").url)
-    xian = City("Xi'an", [], "description", parse_url("https://tinyurl.com/s9243y3v").url)
-    hangzhou = City("Hanzhou", [], "description", parse_url("https://tinyurl.com/jeaaej4p").url)
+    beijingDESC = " Beijing is the nation's political, economic, and cultural center. Located in north China, close to " \
+                  "the port city of Tianjin and partially surrounded by Hebei Province, it also serves as the most " \
+                  "important transportation hub and port of entry."
+    shanghaiDESC = "Shanghai, Hu for short, is a renowned international metropolis drawing more and more attention" \
+                   " from all over the world. Situated on the estuary of Yangtze River, it serves as the most" \
+                   " influential economic, financial, international trade, and cultural center in East China. " \
+                   "Here, one finds the perfect blend of cultures, the modern and the traditional , " \
+                   "and the western and the oriental."
+    chengduDESC = "Chengdu is now one of the most popular travel destinations in China mostly owning to its everlasting" \
+                  " history, well-preserved tradition, unique local folks and arts, pleasant weather, developed tourism " \
+                  "industry. Among all these features, Giant Panda is the most attractive treasure for all visitors to " \
+                  "Chengdu, and world-famous Sichuan Cuisine and Chengdu’s local leisure lifestyle also appeal to " \
+                  "worldwide curiosity."
+    xianDESC = "Xi'an, located in central-northwest China, records the great changes of the country just like a living " \
+               "history book. Called Chang'an (meaning the eternal city) in ancient times, it is one of the birthplaces " \
+               "of the ancient Chinese civilization in the Yellow River Basin area."
+    hangzhouDESC = "Considered more tranquil than many of China's other big cities, the downtown core is built up around" \
+                   " the beautiful West Lake with its many old shrines and temples, romantic bridges, and pagodas, all " \
+                   "of them popular to see at night when they're lit up. Hangzhou was famously described by Marco Polo " \
+                   "as the most beautiful city in the world. Hangzhou is also known as the Silk City for its long " \
+                   "tradition of manufacturing the material, a tradition that lives on in its many silk mills and markets."
+
+    beijing = City("Beijing", [], beijingDESC, parse_url("https://tinyurl.com/yfypw5uj").url)
+    shanghai = City("Shanghai", [], shanghaiDESC, parse_url("https://tinyurl.com/xe7k7sem").url)
+    chengdu = City("Chengdu", [], chengduDESC, parse_url("https://tinyurl.com/v6nw25f").url)
+    xian = City("Xi'an", [], xianDESC, parse_url("https://tinyurl.com/s9243y3v").url)
+    hangzhou = City("Hanzhou", [], hangzhouDESC, parse_url("https://tinyurl.com/jeaaej4p").url)
     tempCitiesChina = [beijing, shanghai, chengdu, xian, hangzhou]
     chinaCities = Cities(tempCitiesChina, Country.CN)
 
