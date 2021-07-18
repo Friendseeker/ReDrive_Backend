@@ -116,6 +116,20 @@ async def login(form_data: OAuth2PasswordRequestForm = Depends()):
     return {"access_token": user.username, "token_type": "bearer"}
 
 
+@app.post("/signup")
+async def signup(form_data: OAuth2PasswordRequestForm = Depends()):
+    fake_users_db[form_data.username] = {
+        "username": form_data.username,
+        "full_name": form_data.username,
+        "email": form_data.username + "@gmail.com",
+        "hashed_password": "hashed" + form_data.password,
+        "disabled": False,
+        "userID": "sdjnasjfnajfj2323"
+    }
+
+    return {"access_token": form_data.username, "token_type": "bearer"}
+
+
 @app.get("/users/me")
 async def read_users_me(current_user: User = Depends(get_current_active_user)):
     return current_user
