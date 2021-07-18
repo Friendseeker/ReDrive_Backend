@@ -107,8 +107,8 @@ class HardCodedData:
     apartmentList = []
     trumpImage = parse_url(r"https://i.imgur.com/cHKbKQT.jpeg").url
     sampleCity1 = City("UC Berk", apartmentList, "desc", trumpImage)
-    sampleCity2 = City("New York", apartmentList,"desc", trumpImage)
-    sampleCity3 = City("Dublin", apartmentList,"desc", trumpImage)
+    sampleCity2 = City("New York", apartmentList, "desc", trumpImage)
+    sampleCity3 = City("Dublin", apartmentList, "desc", trumpImage)
     tempCitiesCanada = [sampleCity1, sampleCity2, sampleCity3]
     canadaCities = Cities(tempCitiesCanada, Country.CA)
 
@@ -172,7 +172,6 @@ class HardCodedData:
     blueMoon = Host("bluemoon", "123456", "HSHDHSADASDHOAS", apartmentList)  # oh my god
     customer1 = Customer("BobtheBuilder", "sksksksksk", "SLKJFLSD1234", -10)
 
-
     @classmethod
     def get_cities(cls, country_name: str) -> Cities:
         if country_name == "US":
@@ -185,4 +184,6 @@ class HardCodedData:
             return cls.franceCities
         if country_name == "CN":
             return cls.chinaCities
+        if country_name == "CA":
+            return cls.canadaCities
         return None
