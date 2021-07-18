@@ -34,6 +34,7 @@ pycryptodome==3.10.1
 pydantic==1.8.2
 pyrsistent==0.18.0
 python-dotenv==0.18.0
+python-multipart==0.0.5
 PyYAML==5.4.1
 requests==2.26.0
 rlp==2.0.1
