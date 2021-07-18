@@ -1,9 +1,13 @@
 from enum import Enum
+from typing import Optional
 
-from fastapi import FastAPI, File
+from fastapi import FastAPI, File, HTTPException, Depends
 from dataclasses import dataclass
 from datetime import datetime
 
+from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+from pydantic import BaseModel
+from starlette import status
 from urllib3.util import url, parse_url
 
 app = FastAPI()
@@ -28,6 +32,96 @@ def get_apartments_by_search(searchbar: str):
 def get_users_by_userID(userID: str):
     return HardCodedData.jerry
 
+
+#  ----- user auth
+
+fake_users_db = {
+    "Jonathan": {
+        "username": "Jonathan",
+        "full_name": "Jonathan Cheng",
+        "email": "johndoe@example.com",
+        "hashed_password": "fakehashedqwertyuiop",
+        "disabled": False,
+        "userID": "sksksksksksk1234"
+    },
+    "Jerry": {
+        "username": "Jerry",
+        "full_name": "Jiahui Tan",
+        "email": "realjerrytan@gmail.com",
+        "hashed_password": "fakehashedqwerty",
+        "disabled": False,
+        "userID": "1sfhsafabfhbahfbh8833"
+    },
+}
+
+
+def fake_hash_password(password: str):
+    return "fakehashed" + password
+
+
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+
+
+class User(BaseModel):
+    username: str
+    email: Optional[str] = None
+    full_name: Optional[str] = None
+    disabled: Optional[bool] = None
+
+
+class UserInDB(User):
+    hashed_password: str
+
+
+def get_user(db, username: str):
+    if username in db:
+        user_dict = db[username]
+        return UserInDB(**user_dict)
+
+
+def fake_decode_token(token):
+    # This doesn't provide any security at all
+    # Check the next version
+    user = get_user(fake_users_db, token)
+    return user
+
+
+async def get_current_user(token: str = Depends(oauth2_scheme)):
+    user = fake_decode_token(token)
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid authentication credentials",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    return user
+
+
+async def get_current_active_user(current_user: User = Depends(get_current_user)):
+    if current_user.disabled:
+        raise HTTPException(status_code=400, detail="Inactive user")
+    return current_user
+
+
+@app.post("/token")
+async def login(form_data: OAuth2PasswordRequestForm = Depends()):
+    user_dict = fake_users_db.get(form_data.username)
+    if not user_dict:
+        raise HTTPException(status_code=400, detail="Incorrect username or password")
+    user = UserInDB(**user_dict)
+    hashed_password = fake_hash_password(form_data.password)
+    if not hashed_password == user.hashed_password:
+        raise HTTPException(status_code=400, detail="Incorrect username or password")
+
+    return {"access_token": user.username, "token_type": "bearer"}
+
+
+@app.get("/users/me")
+async def read_users_me(current_user: User = Depends(get_current_active_user)):
+    return current_user
+
+
+#  ----- data definitions
 
 @dataclass
 class User:
@@ -112,9 +206,9 @@ class HardCodedData:
 
     noDescription = "Anytime of year find live music, amazing Creole and Cajun cuisine, fresh seafood, farmers," \
                     + "markets shopping, nightlife and more.  During Mardi Gras season, the city becomes the " \
-                      + "world’s center. No matter the time of year, New Orleans' calendar overflows in celebration."
+                    + "world’s center. No matter the time of year, New Orleans' calendar overflows in celebration."
     sfDescription = "San Francisco is home to revelatory architecture, the first established LGBTQ+ neighborhood " \
-            + "in the country, and Michelin-starred dining. When in San Francisco dress in layers because the weather" \
+                    + "in the country, and Michelin-starred dining. When in San Francisco dress in layers because the weather" \
                     + " is constantly changing, and the fog often rolls in with little warning. Spend an afternoon" \
                     + " lounging in a public park, taking advantage of San Francisco's seemingly endless green space." \
                     + " Take the BART—i.e., the Metro—to dinner in the Mission. Hike along the Pacific Ocean, or at" \
@@ -123,11 +217,11 @@ class HardCodedData:
                      + "United States, and a melting pot of American culture. NYC has something for every style," \
                      + "taste and budget, and with so many hidden gems around every corner."
     chiDescription = "Chicago has all the offerings you'd expect from a major city: world-class museums, vibrant " \
-                    + "shopping districts and ample nightlife venues, just to name a few. If you're here to learn," \
-                    +  " plan to spend a fair amount of time in Grant Park. This area is home to such notable " \
-                    + "institutions as the Art Institute of Chicago and The Field Museum. For a more Windy " \
-                    + "City-centric education, start your vacation with an architecture river cruise – which can" \
-                    + " provide background on Chicago's famous skyscrapers like the Willis Tower and Tribune Tower."
+                     + "shopping districts and ample nightlife venues, just to name a few. If you're here to learn," \
+                     + " plan to spend a fair amount of time in Grant Park. This area is home to such notable " \
+                     + "institutions as the Art Institute of Chicago and The Field Museum. For a more Windy " \
+                     + "City-centric education, start your vacation with an architecture river cruise – which can" \
+                     + " provide background on Chicago's famous skyscrapers like the Willis Tower and Tribune Tower."
     lvDescription = "Las Vegas is a city that was made for entertainment, carved out of the Mojave Desert with escape" \
                     + "in mind. Millions of people visit Las Vegas annually to relax, dine, shop, " \
                     + "see performers, and experience the nightlife."
@@ -137,7 +231,7 @@ class HardCodedData:
                     + "Downtown L.A. is the largest government center outside of Washington, D.C. Additionally, " \
                     + "Los Angeles has the only remaining wooden lighthouse in the state (located in San " \
                     + "Pedro’s Fermin Park) and the largest historical theater district on the National" \
-                    " Register of Historic Places (located Downtown on Broadway)."
+                      " Register of Historic Places (located Downtown on Broadway)."
 
     no = City("New Orleans, Louisiana", apartmentList, noDescription, parse_url("https://tinyurl.com/9hz9neyn").url)
     sf = City("San Francisco, California", apartmentList, sfDescription, parse_url("https://tinyurl.com/4uh8b8z4").url)
@@ -243,7 +337,7 @@ class HardCodedData:
                   "numerous fine museums, art galleries, and theaters, as well as great places to eat. The city " \
                   "also hosts many professional sporting events and festivals."
 
-    tokyo = City("Tokyo", [],  tokyoDESC, parse_url("https://tinyurl.com/3v4e8atv").url)
+    tokyo = City("Tokyo", [], tokyoDESC, parse_url("https://tinyurl.com/3v4e8atv").url)
     kyoto = City("Kyoto", [], kyotoDESC, parse_url("https://tinyurl.com/ynynermf").url)
     osaka = City("Osaka", [], osakaDESC, parse_url("https://tinyurl.com/85t9d34z").url)
     hiroshima = City("Hiroshima", [], hiroshimaDESC, parse_url("https://tinyurl.com/hesjnytw").url)
