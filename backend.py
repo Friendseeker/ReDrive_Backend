@@ -126,7 +126,7 @@ class HardCodedData:
     na = City("Naples", apartmentList)
     am = City("Amalfi", apartmentList)
     tempCitiesItaly = [ro, ve, flo, mi, na, am]
-    italyCities = Cities(tempCitiesItaly, Country.US)
+    italyCities = Cities(tempCitiesItaly, Country.IT)
 
     paris = City("Paris", [])
     nice = City("Nice", [])
