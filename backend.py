@@ -1,9 +1,10 @@
-import dataclasses
 from enum import Enum
 
 from fastapi import FastAPI, File
 from dataclasses import dataclass
 from datetime import datetime
+
+from urllib3.util import url, parse_url
 
 app = FastAPI()
 
@@ -74,7 +75,7 @@ class Host(User):
 
 @dataclass
 class Apartment:
-    image: File
+    image: url
     price: float
     occupancy: int
     description: str
@@ -104,9 +105,10 @@ class HardCodedData:
     jonathan = User("Jonathan", "qwertyuiop", "sksksksksksk1234")
     jerry = User("Jerry", "qwerty", "1sfhsafabfhbahfbh8833")
     apartmentList = []
-    sampleCity1 = City("UC Berk", apartmentList)
-    sampleCity2 = City("New York", apartmentList)
-    sampleCity3 = City("France", apartmentList)
+    trumpImage = parse_url(r"https://i.imgur.com/cHKbKQT.jpeg").url
+    sampleCity1 = City("UC Berk", apartmentList, "desc", trumpImage)
+    sampleCity2 = City("New York", apartmentList,"desc", trumpImage)
+    sampleCity3 = City("Dublin", apartmentList,"desc", trumpImage)
     tempCitiesCanada = [sampleCity1, sampleCity2, sampleCity3]
     canadaCities = Cities(tempCitiesCanada, Country.CA)
 
@@ -169,6 +171,7 @@ class HardCodedData:
 
     blueMoon = Host("bluemoon", "123456", "HSHDHSADASDHOAS", apartmentList)  # oh my god
     customer1 = Customer("BobtheBuilder", "sksksksksk", "SLKJFLSD1234", -10)
+
 
     @classmethod
     def get_cities(cls, country_name: str) -> Cities:
