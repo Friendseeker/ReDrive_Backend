@@ -88,10 +88,8 @@ class Apartment:
 class City:
     cityName: str
     apartmentList: list[Apartment]
-
-
-#   desc: str
-#   image: File
+    desc: str
+    image: url
 
 
 @dataclass
@@ -112,47 +110,47 @@ class HardCodedData:
     tempCitiesCanada = [sampleCity1, sampleCity2, sampleCity3]
     canadaCities = Cities(tempCitiesCanada, Country.CA)
 
-    no = City("New Orleans, Louisiana", apartmentList)
-    sf = City("San Francisco, California", apartmentList)
-    nyc = City("New York City, New York", apartmentList)
-    chi = City("Chicago, Illinois", apartmentList)
-    lv = City("Las Vegas, Nevada", apartmentList)
-    la = City("Los Angeles, California", apartmentList)
+    no = City("New Orleans, Louisiana", apartmentList, "description", trumpImage)
+    sf = City("San Francisco, California", apartmentList, "description", trumpImage)
+    nyc = City("New York City, New York", apartmentList, "description", trumpImage)
+    chi = City("Chicago, Illinois", apartmentList, "description", trumpImage)
+    lv = City("Las Vegas, Nevada", apartmentList, "description", trumpImage)
+    la = City("Los Angeles, California", apartmentList, "description", trumpImage)
     tempCitiesUS = [no, sf, nyc, chi, lv, la]
     usCities = Cities(tempCitiesUS, Country.US)
 
-    ro = City("Romes", apartmentList)
-    ve = City("Venice", apartmentList)
-    flo = City("Florence", apartmentList)
-    mi = City("Milan", apartmentList)
-    na = City("Naples", apartmentList)
-    am = City("Amalfi", apartmentList)
+    ro = City("Romes", apartmentList, "description", trumpImage)
+    ve = City("Venice", apartmentList, "description", trumpImage)
+    flo = City("Florence", apartmentList, "description", trumpImage)
+    mi = City("Milan", apartmentList, "description", trumpImage)
+    na = City("Naples", apartmentList, "description", trumpImage)
+    am = City("Amalfi", apartmentList, "description", trumpImage)
     tempCitiesItaly = [ro, ve, flo, mi, na, am]
     italyCities = Cities(tempCitiesItaly, Country.IT)
 
-    paris = City("Paris", [])
-    nice = City("Nice", [])
-    bordeaux = City("Bordeaux", [])
-    lyon = City("Lyon", [])
-    cannes = City("Cannes", [])
-    corsica = City("Corsica", [])
+    paris = City("Paris", [], "description", trumpImage)
+    nice = City("Nice", [], "description", trumpImage)
+    bordeaux = City("Bordeaux", [], "description", trumpImage)
+    lyon = City("Lyon", [], "description", trumpImage)
+    cannes = City("Cannes", [], "description", trumpImage)
+    corsica = City("Corsica", [], "description", trumpImage)
     tempCitiesFrance = [paris, nice, bordeaux, lyon, cannes, corsica]
     franceCities = Cities(tempCitiesFrance, Country.FR)
 
-    tokyo = City("Tokyo", [])
-    kyoto = City("Kyoto", [])
-    osaka = City("Osaka", [])
-    hiroshima = City("Hiroshima", [])
-    sapporo = City("Sapporo", [])
-    fukuoka = City("Fukuoka", [])
+    tokyo = City("Tokyo", [], "description", trumpImage)
+    kyoto = City("Kyoto", [], "description", trumpImage)
+    osaka = City("Osaka", [], "description", trumpImage)
+    hiroshima = City("Hiroshima", [], "description", trumpImage)
+    sapporo = City("Sapporo", [], "description", trumpImage)
+    fukuoka = City("Fukuoka", [], "description", trumpImage)
     tempCitiesJapan = [tokyo, kyoto, osaka, hiroshima, sapporo, fukuoka]
     japanCities = Cities(tempCitiesJapan, Country.JP)
 
-    beijing = City("Beijing", [])
-    shanghai = City("Shanghai", [])
-    chengdu = City("Chengdu", [])
-    xian = City("Xi'an", [])
-    hangzhou = City("Hanzhou", [])
+    beijing = City("Beijing", [], "description", trumpImage)
+    shanghai = City("Shanghai", [], "description", trumpImage)
+    chengdu = City("Chengdu", [], "description", trumpImage)
+    xian = City("Xi'an", [], "description", trumpImage)
+    hangzhou = City("Hanzhou", [], "description", trumpImage)
     tempCitiesChina = [beijing, shanghai, chengdu, xian, hangzhou]
     chinaCities = Cities(tempCitiesChina, Country.CN)
 
