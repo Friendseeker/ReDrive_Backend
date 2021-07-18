@@ -148,21 +148,68 @@ class HardCodedData:
     tempCitiesUS = [no, sf, nyc, chi, lv, la]
     usCities = Cities(tempCitiesUS, Country.US)
 
-    ro = City("Romes", apartmentList, "description", parse_url("https://tinyurl.com/3kunj28y").url)
-    ve = City("Venice", apartmentList, "description", parse_url("https://tinyurl.com/5wavafev").url)
-    flo = City("Florence", apartmentList, "description", parse_url("https://tinyurl.com/zrarspdc").url)
-    mi = City("Milan", apartmentList, "description", parse_url("https://tinyurl.com/rztp6mbm").url)
-    na = City("Naples", apartmentList, "description", parse_url("https://tinyurl.com/yuwurmjy").url)
-    am = City("Amalfi", apartmentList, "description", parse_url("https://tinyurl.com/yfmx9vch").url)
+    roDesc = "Rome was called the “Eternal City” by the ancient Romans because they believed that no matter" \
+             + " what happened in the rest of the world, the city of Rome would always remain standing. Exploring" \
+             + " the city centre by foot surrounded by glorious monuments and colossal remains takes you back" \
+             + " in time to the “glory that was Rome”"
+    veDesc = "Venice is unique environmentally, architecturally, and historically, and in its days as a republic" \
+             + " the city was styled la serenissima (“the most serene” or “sublime”). It remains a major Italian" \
+             + " port in the northern Adriatic Sea and is one of the world's oldest tourist and cultural centres"
+    floDesc = "Florence (Firenze in Italian) is a small cultural metropolis that offers visitors some of the" \
+              + " world's top museums and art galleries. The city is a real open-air museum and is the" \
+              + " birthplace of the Renaissance."
+    miDesc = "Milan offers all the advantages of a large city, but it is relatively small, thus making it perfect" \
+             + " to visit, as tourists can get to most of the city’s attractions and museums by foot." \
+             + " Additionaly, Milan is internationally recognised as one of the world’s most important fashion" \
+             + " capitals, but it also has a wealth of interesting museums and things to see and do."
+    naDesc = "Naples, Napoli in Italian, is the third-largest city in Italy, located in the Campania region in" \
+             + " the southern part of the country.  Its close proximity to many interesting sites, such as " \
+             + "Pompeii and the Bay of Naples, makes it a good base for exploring the area. Naples is a vibrant" \
+             + " and chaotic city, full of wonderful historical and artistic treasures and narrow," \
+             + " winding streets with small shops."
+    amDesc = "The Amalfi coast is one of the most renowned tourist destinations in the whole of Italy and " \
+             + "draws thousands of tourists annually. This stretch of mountainous coast sits in-between Naples " \
+             + "and Salerno and encompasses the arm of the Sorrento Peninsula. The coastline includes some absolutely" \
+             + " gorgeous towns that hug the mountains, some sublime beaches and jaw-dropping scenery."
+
+    ro = City("Romes", apartmentList, roDesc, parse_url("https://tinyurl.com/3kunj28y").url)
+    ve = City("Venice", apartmentList, veDesc, parse_url("https://tinyurl.com/5wavafev").url)
+    flo = City("Florence", apartmentList, floDesc, parse_url("https://tinyurl.com/zrarspdc").url)
+    mi = City("Milan", apartmentList, miDesc, parse_url("https://tinyurl.com/rztp6mbm").url)
+    na = City("Naples", apartmentList, naDesc, parse_url("https://tinyurl.com/yuwurmjy").url)
+    am = City("Amalfi", apartmentList, amDesc, parse_url("https://tinyurl.com/yfmx9vch").url)
     tempCitiesItaly = [ro, ve, flo, mi, na, am]
     italyCities = Cities(tempCitiesItaly, Country.IT)
 
-    paris = City("Paris", [], "description", parse_url("https://tinyurl.com/rc4cd4fe").url)
-    nice = City("Nice", [], "description", parse_url("https://tinyurl.com/55498jwc").url)
-    bordeaux = City("Bordeaux", [], "description", parse_url("https://tinyurl.com/2sa7xzcc").url)
-    lyon = City("Lyon", [], "description", parse_url("https://tinyurl.com/dv9wtxas").url)
-    cannes = City("Cannes", [], "description", parse_url("https://tinyurl.com/2u6krn7v").url)
-    corsica = City("Corsica", [], "description", parse_url("https://tinyurl.com/njz58nwc").url)
+    parisDesc = "Paris, capital of France, is one of the most important and influential cities in the world." \
+                + " Some of the most memorable things to do in Paris include visiting the Eiffel Tower," \
+                + " the Arc de Triomphe and Notre-Dame Cathedral. During the evening, experiencing one of the" \
+                + " legendary Moulin Rouge cabaret shows, strolling through some of the most picturesque" \
+                + " neighborhoods, like Montmartre, or climbing the Montparnasse Tower are a must."
+    niceDesc = "Nice is a place to enjoy life, to take in the beauty of the gardens and the sea, and to soak" \
+               + " up the vibrant Mediterranean energy. From wandering the quaint cobblestone streets to strolling" \
+               + " the famous Promenade des Anglais, the joys of spending time in this beautiful city are endless."
+    bordeauxDesc = "Bordeaux is called the 'Port of the Moon' because of its romantic location on a crescent-shaped" \
+                   + " bend of the Garonne River. In this splendid setting that allowed trade to flourish, the city" \
+                   + " has a rich cultural heritage dating back to antiquity."
+    lyonDesc = "Lyon is France's second city, one of France's oldest cities, and is reputed as the gourmet capital" \
+               + " of France. It's large historic centre, Le Vieux Lyon, is a UNESCO World Heritage site," \
+               + " and is the largest ensemble of Renaissance buildings in Europe."
+    cannesDesc = "In an enchanting setting on Golfe de la Napoule bay, Cannes is blessed with a balmy" \
+                 + " Mediterranean climate. The weather is mild year-round and perfect for sunbathing by the " \
+                 + "beach from May through October. Leafy palm trees grace the streets of Cannes, and subtropical" \
+                 + " flowers flourish throughout the city, giving visitors the impression of being in paradise."
+    corsicaDesc = "Corsica is an island of superlatives,a mountain jewel set in the middle of the" \
+                  + " Mediterranean. Our many museums are home to remarkable exhibits which bear witness " \
+                  + "to the passing of time and the island's history. Corsica is an island of superlatives,a " \
+                  + "mountain jewel set in the middle of the Mediterranean."
+
+    paris = City("Paris", [], parisDesc, parse_url("https://tinyurl.com/rc4cd4fe").url)
+    nice = City("Nice", [], niceDesc, parse_url("https://tinyurl.com/55498jwc").url)
+    bordeaux = City("Bordeaux", [], bordeauxDesc, parse_url("https://tinyurl.com/2sa7xzcc").url)
+    lyon = City("Lyon", [], lyonDesc, parse_url("https://tinyurl.com/dv9wtxas").url)
+    cannes = City("Cannes", [], cannesDesc, parse_url("https://tinyurl.com/2u6krn7v").url)
+    corsica = City("Corsica", [], corsicaDesc, parse_url("https://tinyurl.com/njz58nwc").url)
     tempCitiesFrance = [paris, nice, bordeaux, lyon, cannes, corsica]
     franceCities = Cities(tempCitiesFrance, Country.FR)
 
